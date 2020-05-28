@@ -134,7 +134,9 @@ static Key keys[] = {
     TAGKEYS(                        XK_7,                      6)
     TAGKEYS(                        XK_8,                      7)
     TAGKEYS(                        XK_9,                      8)
+
     { MODKEY|ShiftMask,             XK_k,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("killall dwmblocks; dwmblocks &") },
 };
 
 /* button definitions */
