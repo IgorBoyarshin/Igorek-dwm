@@ -5,7 +5,9 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Meduim:minspace=False:hinting=true" };
+// static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Meduim:minspace=False:hinting=true" };
+// static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=12" };
+static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:pixelsize=16:antialias=true:autohist=true" };
 static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Meduim:minspace=False:hinting=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -16,15 +18,23 @@ static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, "#0033f5", "#ff3335" },
-    [SchemeTest]  = { "#00ff00", "#f000ff", "#ff0000" },
+    [SchemeSel] = { "#0ccccc", col_gray1, "#ff3335" },
+    [SchemeNorm]  = { "#0eeeee", "#044444", col_gray2 },
+    [SchemeTest1]  = { "#00f8ff", "#044444", "#044444" },
+    [SchemeTest2]  = { "#fff505", "#044444", "#ff0000" },
+    [SchemeTest3]  = { "#20e270", "#044444", "#ff0000" },
+    [SchemeTest4]  = { "#00ff00", "#f0f0ff", "#ff0000" },
+    [SchemeTest5]  = { "#00ff00", "#f0f0ff", "#ff0000" },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
-    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
     [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
-    [SchemeTest]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest1]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest2]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest3]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest4]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest5]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -93,6 +103,7 @@ static Key keys[] = {
     // { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
     { MODKEY,                       XK_space,  setlayout,      {0} },
 
+    // Monitor
     { MODKEY|ShiftMask,             XK_comma,  spawn,          {.v = set_mon_large } },
     { MODKEY|ShiftMask,             XK_period, spawn,          {.v = set_mon_small } },
 
