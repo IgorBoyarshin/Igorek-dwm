@@ -7,8 +7,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 // static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Meduim:minspace=False:hinting=true" };
 // static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:size=12" };
-static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:pixelsize=16:antialias=true:autohist=true" };
-static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Meduim:minspace=False:hinting=true";
+static const char *fonts[]          = { "SauceCodePro Nerd Font Mono:pixelsize=16:antialias=true:style=Semibold:autohist=true" };
+static const char dmenufont[]       = "SauceCodePro Nerd Font Mono:size=11:antialias=true:style=Semibold:minspace=False:hinting=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#0bbbbb";
@@ -19,22 +19,26 @@ static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
     /*               fg         bg         border   */
     [SchemeSel] = { "#0ccccc", col_gray1, "#ff3335" },
-    [SchemeNorm]  = { "#0eeeee", "#044444", col_gray2 },
-    [SchemeTest1]  = { "#00f8ff", "#044444", "#044444" },
-    [SchemeTest2]  = { "#fff505", "#044444", "#ff0000" },
-    [SchemeTest3]  = { "#20e270", "#044444", "#ff0000" },
-    [SchemeTest4]  = { "#00ff00", "#f0f0ff", "#ff0000" },
-    [SchemeTest5]  = { "#00ff00", "#f0f0ff", "#ff0000" },
+    [SchemeNorm]  = { "#0eeeee", "#055555", col_gray2 },
+    [SchemeTest3]  = { "#00f8ff", "#055555", "#055555" },
+    [SchemeTest4]  = { "#fff505", "#055555", "#ff0000" },
+    [SchemeTest5]  = { "#20e270", "#055555", "#ff0000" },
+    [SchemeTest6]  = { "#ff5500", "#055555", "#ff0000" },
+    [SchemeTest7]  = { "#ff62b0", "#055555", "#ff0000" },
+    [SchemeTest8]  = { "#ff5555", "#055555", "#ff0000" },
+    [SchemeTest9]  = { "#ff62b0", "#055555", "#ff0000" },
 };
 static const unsigned int alphas[][3]      = {
     /*               fg      bg        border     */
     [SchemeSel]  = { OPAQUE, baralpha, borderalpha },
     [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-    [SchemeTest1]  = { OPAQUE, baralpha, borderalpha },
-    [SchemeTest2]  = { OPAQUE, baralpha, borderalpha },
     [SchemeTest3]  = { OPAQUE, baralpha, borderalpha },
     [SchemeTest4]  = { OPAQUE, baralpha, borderalpha },
     [SchemeTest5]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest6]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest7]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest8]  = { OPAQUE, baralpha, borderalpha },
+    [SchemeTest9]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -79,7 +83,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
     "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char *termcmd[]  = { "st", NULL };
+// static const char *termcmd[]  = { "urxvt", NULL };
 
 static const char *set_mon_large[]  = { "/usr/bin/zsh", "-c", "/home/igorek/.mon_large.zsh", NULL };
 static const char *set_mon_small[]  = { "/usr/bin/zsh", "-c", "/home/igorek/.mon_small.zsh", NULL };
@@ -92,7 +97,8 @@ static Key keys[] = {
     { MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
     { MODKEY|ShiftMask,             XK_Tab,    focusstack,     {.i = -1 } },
     { MODKEY,                       XK_comma,  incnmaster,     {.i = +1 } },
-    { MODKEY,                       XK_period, incnmaster,     {.i = -1 } },
+    { MODKEY|ShiftMask,             XK_j,      pushdown,       {0} },
+    { MODKEY|ShiftMask,             XK_k,      pushup,         {0} },
     { MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
     { MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
     { MODKEY,                       XK_Return, zoom,           {0} },
@@ -126,9 +132,9 @@ static Key keys[] = {
     { ControlMask,                XK_Down,  spawn,          SHCMD("~/.set_backlight.zsh 0") },
 
     // Audio volume
-    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/.set-volume.zsh toggle") },
-    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/.set-volume.zsh down") },
-    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/.set-volume.zsh up") },
+    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/scripts/.volume.zsh toggle") },
+    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/scripts/.volume.zsh down") },
+    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/scripts/.volume.zsh up") },
 
     // { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
     // { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -148,7 +154,7 @@ static Key keys[] = {
     TAGKEYS(                        XK_8,                      7)
     TAGKEYS(                        XK_9,                      8)
 
-    { MODKEY|ShiftMask,             XK_k,      quit,           {0} },
+    { MODKEY|ShiftMask,             XK_h,      quit,           {0} },
     { MODKEY|ShiftMask,             XK_l,      spawn,          SHCMD("killall dwmblocks; dwmblocks &") },
 };
 
