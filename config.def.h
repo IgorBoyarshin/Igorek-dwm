@@ -132,9 +132,10 @@ static Key keys[] = {
     { ControlMask,                XK_Down,  spawn,          SHCMD("~/.set_backlight.zsh 0") },
 
     // Audio volume
-    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/scripts/.volume.zsh toggle") },
-    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/scripts/.volume.zsh down") },
-    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/scripts/.volume.zsh up") },
+    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/scripts/volume.zsh toggle") },
+    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/scripts/volume.zsh down") },
+    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/scripts/volume.zsh up") },
+    { MODKEY,                     XK_a,     spawn,          SHCMD("~/scripts/reload_audio_variables.zsh") },
 
     // { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
     // { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
