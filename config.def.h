@@ -86,8 +86,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 // static const char *termcmd[]  = { "urxvt", NULL };
 
-static const char *set_mon_large[]  = { "/usr/bin/zsh", "-c", "/home/igorek/.mon_large.zsh", NULL };
-static const char *set_mon_small[]  = { "/usr/bin/zsh", "-c", "/home/igorek/.mon_small.zsh", NULL };
+static const char *set_mon_large[]  = { "/usr/bin/zsh", "-c", "/home/igorek/scripts/mon_large.zsh", NULL };
+static const char *set_mon_small[]  = { "/usr/bin/zsh", "-c", "/home/igorek/scripts/mon_small.zsh", NULL };
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -115,28 +115,28 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_period, spawn,          {.v = set_mon_small } },
 
     // Print screen
-    { 0,                          XK_Print, spawn,          SHCMD("sleep 0.1; ~/.screenshot.zsh") },
-    { ShiftMask,                  XK_Print, spawn,          SHCMD("sleep 0.1; ~/.screenshot-capture.zsh") },
-    { ControlMask,                XK_Print, spawn,          SHCMD("sleep 0.1; ~/.screenshot-delay-3.zsh") },
+    { 0,                          XK_Print, spawn,          SHCMD("sleep 0.1; ~/scripts/screenshot.zsh") },
+    { ShiftMask,                  XK_Print, spawn,          SHCMD("sleep 0.1; ~/scripts/screenshot_capture.zsh") },
+    { ControlMask,                XK_Print, spawn,          SHCMD("sleep 0.1; ~/scripts/screenshot_delay_3.zsh") },
 
     // Brightness
-    { ControlMask|Mod1Mask,       XK_equal, spawn,          SHCMD("~/.set_brightness.zsh up") },
-    { ControlMask|Mod1Mask,       XK_minus, spawn,          SHCMD("~/.set_brightness.zsh down") },
-    { ControlMask|Mod1Mask,       XK_0,     spawn,          SHCMD("~/.set_brightness.zsh toggle") },
+    { ControlMask|Mod1Mask,       XK_equal, spawn,          SHCMD("~/scripts/set_brightness.zsh up") },
+    { ControlMask|Mod1Mask,       XK_minus, spawn,          SHCMD("~/scripts/set_brightness.zsh down") },
+    { ControlMask|Mod1Mask,       XK_0,     spawn,          SHCMD("~/scripts/set_brightness.zsh toggle") },
 
     // Gamma correction
     { ControlMask|Mod1Mask,       XK_Up,    spawn,          SHCMD("redshift -P -O 6500 -g 1.7:1.7:1.7") },
-    { ControlMask|Mod1Mask,       XK_Down,  spawn,        SHCMD("redshift -P -O 6500 -g 1:1:1") },
+    { ControlMask|Mod1Mask,       XK_Down,  spawn,          SHCMD("redshift -P -O 6500 -g 1:1:1") },
 
     // Keys backlight
-    { ControlMask,                XK_Up,    spawn,          SHCMD("~/.set_backlight.zsh 1") },
-    { ControlMask,                XK_Down,  spawn,          SHCMD("~/.set_backlight.zsh 0") },
+    { ControlMask,                XK_Up,    spawn,          SHCMD("~/scripts/set_backlight.zsh 1") },
+    { ControlMask,                XK_Down,  spawn,          SHCMD("~/scripts/set_backlight.zsh 0") },
 
     // Audio volume
-    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/scripts/volume.zsh toggle") },
-    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/scripts/volume.zsh down") },
-    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/scripts/volume.zsh up") },
-    { MODKEY,                     XK_a,     spawn,          SHCMD("~/scripts/reload_audio_variables.zsh") },
+    { Mod1Mask,                   XK_m,     spawn,          SHCMD("~/scripts/audio/volume.zsh toggle") },
+    { Mod1Mask,                   XK_minus, spawn,          SHCMD("~/scripts/audio/volume.zsh down") },
+    { Mod1Mask,                   XK_equal, spawn,          SHCMD("~/scripts/audio/volume.zsh up") },
+    { MODKEY,                     XK_a,     spawn,          SHCMD("~/scripts/audio/reload_audio_variables.zsh") },
 
     // { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
     // { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
